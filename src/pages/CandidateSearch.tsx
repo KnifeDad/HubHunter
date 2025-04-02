@@ -2,11 +2,21 @@ import { useEffect, useState } from 'react';
 import { searchGithub } from '../api/API';
 import { Candidate } from '../interfaces/Candidate.interface';
 
+/**
+ * CandidateSearch Component
+ * Displays and manages the candidate search interface, allowing users to
+ * browse through potential candidates and save promising ones.
+ */
 const CandidateSearch = () => {
+  // State management for current candidate, loading state, and error handling
   const [currentCandidate, setCurrentCandidate] = useState<Candidate | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  /**
+   * Fetches and displays the next candidate from GitHub
+   * Updates loading and error states accordingly
+   */
   const loadNextCandidate = async () => {
     try {
       setLoading(true);
@@ -26,6 +36,10 @@ const CandidateSearch = () => {
     }
   };
 
+  /**
+   * Saves the current candidate to localStorage if not already saved
+   * Then loads the next candidate
+   */
   const handleAcceptCandidate = () => {
     if (currentCandidate) {
       const savedCandidates = JSON.parse(localStorage.getItem('savedCandidates') || '[]');
@@ -40,10 +54,12 @@ const CandidateSearch = () => {
     }
   };
 
+  // Load initial candidate when component mounts
   useEffect(() => {
     loadNextCandidate();
   }, []);
 
+  // Loading state UI
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[calc(100vh-80px)]">
@@ -52,6 +68,7 @@ const CandidateSearch = () => {
     );
   }
 
+  // Error state UI
   if (error) {
     return (
       <div className="flex items-center justify-center min-h-[calc(100vh-80px)]">
@@ -68,6 +85,7 @@ const CandidateSearch = () => {
     );
   }
 
+  // Main candidate display UI
   return (
     <div className="flex flex-col items-center min-h-[calc(100vh-80px)] px-4">
       <h1 className="text-3xl font-bold my-8 bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">

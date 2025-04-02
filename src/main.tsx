@@ -8,6 +8,13 @@ import CandidateSearch from './pages/CandidateSearch.tsx';
 import PotentialCandidates from './pages/PotentialCandidates.tsx';
 import ErrorPage from './pages/ErrorPage.tsx';
 
+/**
+ * Application Router Configuration
+ * Defines the main routes and their corresponding components:
+ * - /: Candidate search page (home)
+ * - /saved: Saved candidates page
+ * - Error page for 404 and other errors
+ */
 const router = createBrowserRouter([
   {
     path: '/',
@@ -26,6 +33,7 @@ const router = createBrowserRouter([
   },
 ]);
 
+// Initialize the React application
 const rootElement = document.getElementById('root');
 if (rootElement) {
   ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);

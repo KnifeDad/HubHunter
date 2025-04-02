@@ -1,8 +1,13 @@
+/**
+ * Searches GitHub for potential developer candidates based on activity metrics
+ * @param retryCount - Number of retries if a candidate doesn't meet criteria
+ * @returns Array of candidate details or empty array if no suitable candidates found
+ */
 const searchGithub = async (retryCount = 0) => {
   try {
     const token = import.meta.env.VITE_GITHUB_TOKEN;
     
-    // Search for users with certain criteria to get more complete profiles
+    // Search for active users with minimum repository and follower counts
     const searchResponse = await fetch(
       `https://api.github.com/search/users?q=type:user+repos:>5+followers:>10&sort=updated&order=desc&per_page=100`,
       {
@@ -24,11 +29,11 @@ const searchGithub = async (retryCount = 0) => {
       return [];
     }
 
-    // Get a random user from the results
+    // Randomly select a user from the search results
     const randomIndex = Math.floor(Math.random() * searchResults.items.length);
     const selectedUser = searchResults.items[randomIndex];
 
-    // Get detailed information for the selected user
+    // Fetch detailed profile information for the selected user
     const userDetailsResponse = await fetch(
       `https://api.github.com/users/${selectedUser.login}`,
       {
@@ -46,7 +51,7 @@ const searchGithub = async (retryCount = 0) => {
     const userDetails = await userDetailsResponse.json();
     console.log('User details:', userDetails);
 
-    // If the user has no bio or location and we haven't retried too many times, try another user
+    // Retry if user profile is incomplete (no bio or location) and we haven't exceeded retry limit
     if (!userDetails.bio && !userDetails.location && retryCount < 3) {
       return searchGithub(retryCount + 1);
     }

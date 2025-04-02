@@ -1,18 +1,32 @@
 import { useEffect, useState } from 'react';
 import { Candidate } from '../interfaces/Candidate.interface';
 
+/**
+ * PotentialCandidates Component
+ * Displays a table of saved candidates with their details and allows
+ * users to remove candidates from the saved list.
+ */
 const PotentialCandidates = () => {
+  // State management for saved candidates
   const [savedCandidates, setSavedCandidates] = useState<Candidate[]>([]);
 
+  // Load saved candidates from localStorage when component mounts
   useEffect(() => {
     loadSavedCandidates();
   }, []);
 
+  /**
+   * Loads saved candidates from localStorage and updates state
+   */
   const loadSavedCandidates = () => {
     const candidates = JSON.parse(localStorage.getItem('savedCandidates') || '[]');
     setSavedCandidates(candidates);
   };
 
+  /**
+   * Removes a candidate from the saved list
+   * @param candidateId - ID of the candidate to remove
+   */
   const handleRemoveCandidate = (candidateId: number) => {
     const updatedCandidates = savedCandidates.filter(
       (candidate) => candidate.id !== candidateId
@@ -21,6 +35,7 @@ const PotentialCandidates = () => {
     setSavedCandidates(updatedCandidates);
   };
 
+  // Empty state UI
   if (savedCandidates.length === 0) {
     return (
       <div className="app-container">
@@ -35,6 +50,7 @@ const PotentialCandidates = () => {
     );
   }
 
+  // Main candidates table UI
   return (
     <div className="app-container">
       <h1 className="text-3xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
@@ -84,18 +100,13 @@ const PotentialCandidates = () => {
                   <td>{candidate.location || '—'}</td>
                   <td>{candidate.email || '—'}</td>
                   <td>{candidate.company || '—'}</td>
-                  <td>
-                    <p className="table-bio" title={candidate.bio || ''}>
-                      {candidate.bio || '—'}
-                    </p>
-                  </td>
+                  <td className="max-w-xs truncate">{candidate.bio || '—'}</td>
                   <td>
                     <button
                       onClick={() => handleRemoveCandidate(candidate.id)}
-                      className="circular-button circular-button-reject"
-                      title="Remove Candidate"
+                      className="text-red-400 hover:text-red-300"
                     >
-                      −
+                      Remove
                     </button>
                   </td>
                 </tr>
