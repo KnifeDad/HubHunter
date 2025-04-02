@@ -5,6 +5,7 @@
 HubHunter is a modern, sleek application that helps tech recruiters and hiring managers discover talented developers on GitHub. With its intuitive interface and smart filtering system, finding your next team member has never been more enjoyable! 
 
 [![GitHub Profile](https://img.shields.io/badge/GitHub-KnifeDad-blue?style=for-the-badge&logo=github)](https://github.com/KnifeDad)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-green?style=for-the-badge)](https://hubhunter-of65.onrender.com/)
 
 ## 📸 Preview
 
