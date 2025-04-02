@@ -20,6 +20,8 @@ HubHunter is a modern, sleek application that helps tech recruiters and hiring m
 - 📊 Quick stats overview for each candidate
 - 💾 Save potential candidates for later review
 - 🔄 Efficient workflow with accept/reject actions
+- 📋 Advanced sorting capabilities for all candidate fields
+- 🔎 Smart filtering system to find the perfect match
 
 ## 🛠️ Tech Stack
 
@@ -64,6 +66,8 @@ npm run dev
 3. ✅ Accept promising developers
 4. ❌ Reject those who don't fit
 5. 📋 Review your saved candidates
+6. 🔄 Sort candidates by any field (click column headers)
+7. 🔎 Filter candidates by name, location, company, or bio
 
 ## 🎨 UI Features
 
@@ -72,6 +76,8 @@ npm run dev
 - 📱 Responsive design
 - 🎭 Smooth transitions
 - 🖼️ Clean card layouts
+- 📊 Interactive sorting indicators
+- 🔍 Real-time filtering
 
 ## 📝 License
 
