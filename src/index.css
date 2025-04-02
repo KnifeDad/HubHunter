@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Inter:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: dark;
+  color: rgba(255, 255, 255, 0.87);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Theme Colors */
+  --primary: #0ea5e9;
+  --primary-dark: #0284c7;
+  --accent: #06b6d4;
+  --success: #10b981;
+  --danger: #ef4444;
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --border-color: rgba(6, 182, 212, 0.1);
+  
+  /* Gradients */
+  --primary-gradient: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+  --secondary-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  --card-gradient: linear-gradient(145deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+  
+  /* Text Colors */
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+}
+
+.font-tech {
+  font-family: 'Orbitron', sans-serif;
+}
+
+body {
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  min-height: 100vh;
+  margin: 0;
+}
+
+/* Navigation */
+.nav-button {
+  position: relative;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
+
+.nav-button::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 0.5rem;
+  padding: 1px;
+  background: var(--primary-gradient);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-button:hover::before,
+.nav-button-active::before {
+  opacity: 1;
+}
+
+.nav-button:hover,
+.nav-button-active {
+  color: var(--text-primary);
+}
+
+/* Avatar */
+.candidate-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(6, 182, 212, 0.2);
+  background: var(--bg-dark);
+  flex-shrink: 0;
+}
+
+.candidate-avatar-container {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  position: relative;
+  margin: 0;
+}
+
+/* Cards */
+.candidate-card-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  background: var(--card-gradient);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.candidate-card-container:hover {
+  box-shadow: 0 8px 32px rgba(6, 182, 212, 0.15);
+  border-color: rgba(6, 182, 212, 0.3);
+  transform: translateY(-2px);
+}
+
+.candidate-card-content {
+  padding: 1.5rem;
+}
+
+.candidate-card-footer {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--border-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+/* Buttons */
+.circular-button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.circular-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.circular-button-accept {
+  background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+}
+
+.circular-button-reject {
+  background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
+}
+
+/* Tables */
+.candidates-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 1rem;
+}
+
+.candidates-table th {
+  text-align: left;
+  padding: 1rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border-color);
+  background: var(--bg-dark);
+}
+
+.candidates-table td {
+  padding: 1rem;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+
+.candidates-table td:last-child {
+  border-right: none;
+}
+
+.candidates-table tr:last-child td {
+  border-bottom: none;
+}
+
+.candidates-table tr td:first-child {
+  border-left: 1px solid var(--border-color);
+}
+
+.candidates-table tbody tr {
+  transition: all 0.3s ease;
+}
+
+.candidates-table tbody tr:hover td {
+  background: #243147;
+}
+
+.table-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--border-color);
+}
+
+.table-bio {
+  max-width: 300px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-secondary);
+}
+
+/* Container */
+.app-container {
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* Stats */
+.stat-card {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border-color);
+}
