@@ -9,6 +9,8 @@ HubHunter is a modern, sleek application that helps tech recruiters and hiring m
 
 ## 📸 Preview
 
+🔗 [Live Demo](https://kanbananas-frontend.onrender.com/)
+
 <div align="center">
   <img src="./assets/hubhunter-preview.png" alt="HubHunter Preview" width="800"/>
 </div>
